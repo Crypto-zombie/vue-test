@@ -15,6 +15,39 @@ a,
   transition: 0.4s;
 }
 
+.form-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-input-hint {
+  color: red;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+input {
+  padding: 5px;
+}
+
+label {
+  margin-right: 5px;
+}
+
+h2 {
+  text-align: center;
+  font-weight: 600;
+}
+
+button {
+  padding: 5px;
+  width: 100%;
+  background-color: green;
+  border: solid 1px green;
+  color: white;
+  cursor: pointer;
+}
+
 @media (hover: hover) {
   a:hover {
     background-color: hsla(160, 100%, 37%, 0.2);
@@ -28,8 +61,5 @@ a,
   }
 
   #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
   }
 }
