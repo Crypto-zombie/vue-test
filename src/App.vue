@@ -1,15 +1,21 @@
 <script setup>
 import { object, string } from "yup";
-import { ref } from "vue";
+import { reactive } from "vue";
 import FormInput from "./components/FormInput.vue";
 const loginFormSchema = object().shape({
-  email: string().email().required(),
-  password: string().required(),
+  email: string().email().required('Email cannot be empty'),
+  password: string()
+    .min(8,'Password should be less than 8 characters')
+    .required('Password cannot be empty'),
 });
-const email = ref('')
-const password = ref('')
-const e_email = ref('')
-const e_pass = ref('')
+const info = reactive({
+  email: '',
+  password: '',
+})
+const errors = reactive({
+  email: '',
+  password: '',
+})
 
 const loginUser = () => {
   loginFormSchema
@@ -39,19 +45,19 @@ const validate = (field) => {
       <h2>Login</h2>
       <FormInput
         label="Email"
-        v-model="email"
+        v-model="info.email"
         type="email"
         @validate="validate('email')"
         name="email"
-        :error="e_email"
+        :error="errors.email"
       />
       <FormInput
         label="Password"
-        v-model="password"
+        v-model="info.password"
         type="password"
         @validate="validate('password')"
         name="password"
-        :error="e_pass"
+        :error="errors.password"
       />
       <button class="btn btn-primary btn-block">Login</button>
     </form>

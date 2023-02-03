@@ -6,10 +6,10 @@ defineProps({
   type: { required: true },
     label: { required: true },
     name: { required: true },
-    value: { required: true },
+    modelValue: String,
     error: { required: true }
 })
-const emit = defineEmits(['validate'])
+const emit = defineEmits(['validate', 'update:modelValue'])
 </script>
 
 <template>
@@ -19,8 +19,8 @@ const emit = defineEmits(['validate'])
       :id="name"
       :name="name"
       :type="type"
-      :value="value"
-      @input="$emit('input', $event.target.value)"
+      :value="modelValue"
+      @input="$emit('update:modelValue', $event.target.value)"
       class="form-input"
       @blur="$emit('validate')"
       @keypress="$emit('validate')"
